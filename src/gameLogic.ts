@@ -1,7 +1,7 @@
 // All the Redux hooks and game logic can go here.
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
-import { incrementTime, incrementDoubt, incrementFaith, incrementHunger, updateLastClickTime, reset } from './store/gameSlice';
+import { incrementTime, incrementDoubt, incrementFaith,  updateLastClickTime, reset } from './store/gameSlice';
 import { useEffect } from 'react';
 import doubtQuestions from './constants/doubtConfig';
 
@@ -49,7 +49,6 @@ export const useGameLogic = (
     setSelectedDialogue4('');
     setSelectedDialogue5('');
   };
-  type DialogueCategory = 'eagle/vulture' | 'wolf/coyote' | 'Camus/Sisyphus';
   
 //Write a side effect that will setSelectedDialogue3, setSelectedDialogue4, and setSelectedDialogue5 to random doubt questions from doubtQuestions using lastClickTime > currentdatetime - 10000
 function generateRandomDoubt() {

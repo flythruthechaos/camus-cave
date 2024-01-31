@@ -12,7 +12,7 @@ const GameComponent = () => {
     selectedDialogue3, selectedDialogue4, selectedDialogue5, setSelectedDialogue1, setSelectedDialogue2, 
     setSelectedDialogue3, setSelectedDialogue4, setSelectedDialogue5} = useDialogueSelector();
 
-  const { time, faith, doubt, handleDoubt, handleReset, lastClickTime, generateRandomDoubt } = useGameLogic(
+  const { time, faith, doubt, handleDoubt, handleReset, generateRandomDoubt } = useGameLogic(
     setSelectedDialogue1,
     setSelectedDialogue2,
     setSelectedDialogue3,
