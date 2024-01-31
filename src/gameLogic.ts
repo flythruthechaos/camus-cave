@@ -1,7 +1,7 @@
 // All the Redux hooks and game logic can go here.
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
-import { incrementTime, incrementDoubt, incrementFaith,  updateLastClickTime, reset, hasAnsweredTrue, hasAnsweredFalse } from './store/gameSlice';
+import { incrementTime, incrementDoubt, incrementFaith,  updateLastClickTime, reset, hasAnsweredTrue } from './store/gameSlice';
 import { useEffect } from 'react';
 import doubtQuestions from './constants/doubtConfig';
 
