@@ -9,7 +9,7 @@ import {
   reset,
   setIsLookingAround,
 } from "./store/gameSlice";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import doubtQuestions from "./constants/doubtConfig";
 
 export const useGameLogic = (
@@ -64,16 +64,20 @@ export const useGameLogic = (
     setSelectedDialogue5("");
   };
 
+  const generateRandomDoubtRef = useRef(generateRandomDoubt);
+  generateRandomDoubtRef.current = generateRandomDoubt;
+  
   useEffect(() => {
     let timer: string | number | NodeJS.Timeout | undefined;
     if (isLookingAround) {
       timer = setTimeout(() => {
-        generateRandomDoubt();
+        generateRandomDoubtRef.current();
         dispatch(setIsLookingAround(false));
       }, 10000);
     }
     return () => clearTimeout(timer);
-  }, [isLookingAround, dispatch, generateRandomDoubt]);
+  }, [isLookingAround, dispatch]);
+  
 
   //Write a side effect that will setSelectedDialogue3, setSelectedDialogue4, and setSelectedDialogue5 to random doubt questions from doubtQuestions using lastClickTime > currentdatetime - 10000
   function generateRandomDoubt() {
