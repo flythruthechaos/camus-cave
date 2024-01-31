@@ -8,6 +8,7 @@ import {
   updateLastClickTime,
   reset,
   setIsLookingAround,
+  incrementHunger,
 } from "./store/gameSlice";
 import { useEffect, useRef } from "react";
 import doubtQuestions from "./constants/doubtConfig";
@@ -41,6 +42,13 @@ export const useGameLogic = (
     (state: RootState) => state.game.isLookingAround,
   );
   // ... all other state selectors
+
+useEffect(() => {
+    if (time % 10 === 0) {
+      dispatch(incrementHunger(-1));
+    }
+  }, [time, dispatch]);
+  
 
   // ... all your handlers (handleDoubt, handleTimer, etc.)
   const handleDoubt = () => {

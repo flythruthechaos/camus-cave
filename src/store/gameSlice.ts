@@ -15,7 +15,7 @@ const initialState: GameState = {
   time: 0,
   faith: 0,
   doubt: 0,
-  hunger: 0,
+  hunger: 100,
   lastClickTime: Date.now(),
   dialogue: 0,
   hasAnswered: false,
