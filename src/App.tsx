@@ -1,15 +1,10 @@
-import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { incrementTime, incrementDoubt, incrementFaith, incrementHunger, updateLastClickTime, reset } from './store/gameSlice';
-import { useSelector } from 'react-redux';
-import { RootState } from './store/store';
+import { updateLastClickTime } from './store/gameSlice';
 import './App.css';
-import dialoguesData from './constants/dialogueConfig';
 import { useDialogueSelector } from './dialogueSelector';
 import { useGameLogic } from './gameLogic';
 import { DialogueCategory } from './types';
 import { Button, Typography } from '@mui/material';
-import doubtQuestions from './constants/doubtConfig';
 
 const GameComponent = () => {
   const dispatch = useDispatch();

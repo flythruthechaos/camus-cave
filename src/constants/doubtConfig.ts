@@ -1,4 +1,3 @@
-import exp from "constants";
 
 interface DoubtQuestion {
     question: string;
