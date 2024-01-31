@@ -19,6 +19,7 @@ export const useGameLogic = (
   setSelectedDialogue4: React.Dispatch<React.SetStateAction<string | null>>,
   setSelectedDialogue5: React.Dispatch<React.SetStateAction<string | null>>,
 ) => {
+
   const dispatch = useDispatch();
   useEffect(() => {
     const timer = setInterval(() => {
@@ -27,6 +28,7 @@ export const useGameLogic = (
 
     return () => clearInterval(timer);
   }, [dispatch]);
+
   const time = useSelector((state: RootState) => state.game.time);
   const faith = useSelector((state: RootState) => state.game.faith);
   const doubt = useSelector((state: RootState) => state.game.doubt);
@@ -71,7 +73,7 @@ export const useGameLogic = (
       }, 10000);
     }
     return () => clearTimeout(timer);
-  }, [isLookingAround, dispatch]);
+  }, [isLookingAround, dispatch, generateRandomDoubt]);
 
   //Write a side effect that will setSelectedDialogue3, setSelectedDialogue4, and setSelectedDialogue5 to random doubt questions from doubtQuestions using lastClickTime > currentdatetime - 10000
   function generateRandomDoubt() {
