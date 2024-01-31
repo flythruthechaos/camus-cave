@@ -7,6 +7,7 @@ interface GameState {
     hunger: number;
     lastClickTime: number | null;
     dialogue: number;
+    hasAnswered: boolean;
 }
 
 const initialState: GameState = {
@@ -16,6 +17,7 @@ const initialState: GameState = {
   hunger: 0,
   lastClickTime: Date.now(),
   dialogue: 0,
+    hasAnswered: false,
 };
 
 
@@ -45,10 +47,21 @@ export const gameSlice = createSlice({
         state.lastClickTime = action.payload;
         console.log(state.lastClickTime);
       },
+    
+    hasAnsweredTrue: (state) => {
+        state.hasAnswered = true;
+        console.log('state.hasanswered: ', state.hasAnswered);
+    },
+
+    hasAnsweredFalse: (state) => {
+        state.hasAnswered = false;
+        console.log('state.hasanswered: ', state.hasAnswered);
+    },  
   },
 });
 
-export const { incrementTime, incrementDoubt, incrementFaith, incrementHunger, updateLastClickTime, reset } = gameSlice.actions;
+export const { incrementTime, incrementDoubt, incrementFaith, incrementHunger, updateLastClickTime, 
+    reset, hasAnsweredFalse, hasAnsweredTrue } = gameSlice.actions;
 export default gameSlice.reducer;
 
 

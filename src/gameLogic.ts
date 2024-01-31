@@ -1,7 +1,7 @@
 // All the Redux hooks and game logic can go here.
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from './store/store';
-import { incrementTime, incrementDoubt, incrementFaith,  updateLastClickTime, reset } from './store/gameSlice';
+import { incrementTime, incrementDoubt, incrementFaith,  updateLastClickTime, reset, hasAnsweredTrue, hasAnsweredFalse } from './store/gameSlice';
 import { useEffect } from 'react';
 import doubtQuestions from './constants/doubtConfig';
 
@@ -26,11 +26,16 @@ export const useGameLogic = (
   const doubt = useSelector((state: RootState) => state.game.doubt);
   const hunger = useSelector((state: RootState) => state.game.hunger);
   const lastClickTime = useSelector((state: RootState) => state.game.lastClickTime);
+    const hasAnswered = useSelector((state: RootState) => state.game.hasAnswered);
   // ... all other state selectors
 
   // ... all your handlers (handleDoubt, handleTimer, etc.)
   const handleDoubt = () => {
+    console.log('handleDoubt');
     const currentTime = Date.now();
+
+    dispatch(hasAnsweredTrue());
+    console.log('hasAnswered: ', hasAnswered);
   
     if (currentTime - lastClickTime! > 10000 && lastClickTime !== null) {
       const timeDifference = currentTime - lastClickTime!;
@@ -53,7 +58,9 @@ export const useGameLogic = (
 //Write a side effect that will setSelectedDialogue3, setSelectedDialogue4, and setSelectedDialogue5 to random doubt questions from doubtQuestions using lastClickTime > currentdatetime - 10000
 function generateRandomDoubt() {
     
-              
+if (hasAnswered === true) {
+    return;
+}            
       const randomIndex3 = Math.floor(Math.random() * doubtQuestions.questions.length);
       const randomQuestion3 = doubtQuestions.questions[randomIndex3].question;;
       setSelectedDialogue3(randomQuestion3);

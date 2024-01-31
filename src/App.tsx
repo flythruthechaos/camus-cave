@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { updateLastClickTime } from './store/gameSlice';
+import { hasAnsweredFalse, updateLastClickTime } from './store/gameSlice';
 import './App.css';
 import { useDialogueSelector } from './dialogueSelector';
 import { useGameLogic } from './gameLogic';
@@ -23,7 +23,7 @@ const GameComponent = () => {
   const handleTimer = () => {
     const currentTime = Date.now();
     dispatch(updateLastClickTime(currentTime));
-  
+    dispatch(hasAnsweredFalse());
     // Generate a random category
     const categories: DialogueCategory[] = ['eagle/vulture', 'wolf/coyote', 'Camus/Sisyphus'];
     const randomCategory = categories[Math.floor(Math.random() * categories.length)];
