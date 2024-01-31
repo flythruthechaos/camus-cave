@@ -1,13 +1,14 @@
-import {  createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface GameState {
   time: number;
-    faith: number;
-    doubt: number;
-    hunger: number;
-    lastClickTime: number | null;
-    dialogue: number;
-    hasAnswered: boolean;
+  faith: number;
+  doubt: number;
+  hunger: number;
+  lastClickTime: number | null;
+  dialogue: number;
+  hasAnswered: boolean;
+  isLookingAround: boolean;
 }
 
 const initialState: GameState = {
@@ -17,12 +18,12 @@ const initialState: GameState = {
   hunger: 0,
   lastClickTime: Date.now(),
   dialogue: 0,
-    hasAnswered: false,
+  hasAnswered: false,
+  isLookingAround: false,
 };
 
-
 export const gameSlice = createSlice({
-  name: 'game',
+  name: "game",
   initialState,
   reducers: {
     //Write a reducer that will reset state to initial state
@@ -43,34 +44,33 @@ export const gameSlice = createSlice({
     incrementHunger: (state, action: PayloadAction<number>) => {
       state.hunger += action.payload;
     },
-    updateLastClickTime: (state, action: PayloadAction<number|null>) => {
-        state.lastClickTime = action.payload;
-        console.log(state.lastClickTime);
-      },
-    
-    hasAnsweredTrue: (state) => {
-        state.hasAnswered = true;
-        console.log('state.hasanswered: ', state.hasAnswered);
+    updateLastClickTime: (state, action: PayloadAction<number | null>) => {
+      state.lastClickTime = action.payload;
+      console.log(state.lastClickTime);
     },
 
-    hasAnsweredFalse: (state) => {
-        state.hasAnswered = false;
-        console.log('state.hasanswered: ', state.hasAnswered);
-    },  
+    setIsLookingAround: (state, action: PayloadAction<boolean>) => {
+      state.isLookingAround = action.payload;
+    },
   },
 });
 
-export const { incrementTime, incrementDoubt, incrementFaith, incrementHunger, updateLastClickTime, 
-    reset, hasAnsweredFalse, hasAnsweredTrue } = gameSlice.actions;
+export const {
+  incrementTime,
+  incrementDoubt,
+  incrementFaith,
+  incrementHunger,
+  updateLastClickTime,
+  reset,
+  setIsLookingAround,
+} = gameSlice.actions;
 export default gameSlice.reducer;
 
-
 export const saveGameState = (state: GameState) => {
-    localStorage.setItem('gameState', JSON.stringify(state));
-  };
-  
-  export const loadGameState = (): GameState => {
-    const savedState = localStorage.getItem('gameState');
-    return savedState ? JSON.parse(savedState) : initialState;
-  };
-  
+  localStorage.setItem("gameState", JSON.stringify(state));
+};
+
+export const loadGameState = (): GameState => {
+  const savedState = localStorage.getItem("gameState");
+  return savedState ? JSON.parse(savedState) : initialState;
+};
